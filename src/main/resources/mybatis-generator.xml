@@ -1,43 +1,44 @@
-<?xmlversion="1.0"encoding="UTF-8"?>
-<!DOCTYPE generatorConfiguration
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-
 <generatorConfiguration>
-    <!-- ClassPathEntry: database JDBC driven jar packet address -->
+    <!-- 数据库驱动 -->
     <context id="DB2Tables" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/miaosha" userId="root" password="root">
+        </jdbcConnection>
 
-        <jdbcConnection>driverClass</jdbcConnection>
-        <jdbcConnectiondriverClass>"oracle.jdbc.driver.OracleDriver"
-        connectionURL="jdbc:oracle:thin:@198.17.1.1:1521:ORCL"
-        userId="unuser"
-        password="password">
-        </jdbcConnectiondriverClass>
-    <!--  The default false, JDBC DECIMAL and NUMERIC type analysis for Integer
-         true, The JDBC DECIMAL and NUMERIC type analysis for java.math.BigDecimal
-     -->
-    <javaTypeResolver>
-        <propertyname="forceBigDecimals"value="false"/>
-    </javaTypeResolver>
-    <!-- Position automatic code generation of targetProject: -->
-    <javaModelGeneratortargetPackage="com.soft.model"targetProject="E:\WebWorkSpace\workspace_js\downAttachdemo\src">
-    <!-- EnableSubPackages: if the schema as a suffix - package>
-    <propertyname="enableSubPackages"value="true"/>
-  <!-- The value returned from the database space is cleared and -->
-    <propertyname="trimStrings"value="true"/>
-</javaModelGenerator>
+        <!-- 生成DataObject类存放位置 -->
+        <javaModelGenerator targetPackage="com.miaosha.dataObject" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
 
-<sqlMapGeneratortargetPackage="sqlmap"targetProject="E:\WebWorkSpace\workspace_js\downAttachdemo\conf">
-<propertyname="enableSubPackages"value="false"/>
+        <!-- 生成映射文件存放位置 -->
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-<javaClientGeneratortype="XMLMAPPER"targetPackage="com.soft.mapping"targetProject="E:\WebWorkSpace\workspace_js\downAttachdemo\src">
-<propertyname="enableSubPackages"value="true"/>
+        <!-- 生成Dao类存放位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.miaosha.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <!-- TableName: is used to automatically generate code database table; domainObjectName: corresponds to the javaBean class name database table -->
-<table schema="untodo" tableName="mocha_t_app" domainObjectName="MochaTodoApp">
 
-</table>
-        </context>
+        <!-- 生成对应表及类名 -->
+        <table tableName="user_info" domainObjectName="UserDO"
+               enableCountByExample = "false"
+               enableUpdateByExample = "false"
+               enableDeleteByExample = "false"
+               enableSelectByExample = "false"
+               selectByExampleQueryId = "false"
+        ></table>
+        <table tableName="user_password" domainObjectName="UserPasswordDO"
+               enableCountByExample = "false"
+               enableUpdateByExample = "false"
+               enableDeleteByExample = "false"
+               enableSelectByExample = "false"
+               selectByExampleQueryId = "false"
+        ></table>
 
-        </generatorConfiguration>
+    </context>
+</generatorConfiguration>
