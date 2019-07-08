@@ -1,23 +1,11 @@
-package com.miaosha.service.model;
+package com.miaosha.controller.viewobject;
 
-import com.miaosha.controller.viewobject.UserVO;
-
-public class UserModel {
+public class UserVO {
     private Integer id;
     private String name;
     private Byte gender;
     private Integer age;
     private String telphone;
-
-    public String getEncrptPassword() {
-        return encrptPassword;
-    }
-
-    public void setEncrptPassword(String encrptPassword) {
-        this.encrptPassword = encrptPassword;
-    }
-
-    private String encrptPassword;
 
     public Integer getId() {
         return id;
@@ -58,23 +46,4 @@ public class UserModel {
     public void setTelphone(String telphone) {
         this.telphone = telphone;
     }
-
-    public String getRegisterMode() {
-        return registerMode;
-    }
-
-    public void setRegisterMode(String registerMode) {
-        this.registerMode = registerMode;
-    }
-
-    public String getThirdPartyId() {
-        return thirdPartyId;
-    }
-
-    public void setThirdPartyId(String thirdPartyId) {
-        this.thirdPartyId = thirdPartyId;
-    }
-
-    private String registerMode;
-    private String thirdPartyId;
 }

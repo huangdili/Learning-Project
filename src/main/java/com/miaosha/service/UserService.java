@@ -1,8 +1,9 @@
 package com.miaosha.service;
 
+import com.miaosha.controller.viewobject.UserVO;
 import com.miaosha.service.model.UserModel;
 
 public interface UserService {
-    UserModel getUserBuId(Integer id);
+    UserVO getUserById(Integer id);
 
 }
