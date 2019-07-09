@@ -5,7 +5,7 @@ import com.miaosha.controller.viewobject.UserVO;
 public class UserModel {
     private Integer id;
     private String name;
-    private Byte gender;
+    private Integer gender;
     private Integer age;
     private String telphone;
 
@@ -35,11 +35,11 @@ public class UserModel {
         this.name = name;
     }
 
-    public Byte getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(Byte gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 
