@@ -19,6 +19,9 @@ import java.util.Random;
 @RequestMapping("/user")
 @CrossOrigin
 public class UserController extends BaseController{
+    public static String test="confictTest";
+
+
     @Autowired UserService userService;
 
     @Autowired
