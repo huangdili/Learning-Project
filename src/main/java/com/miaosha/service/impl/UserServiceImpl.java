@@ -19,7 +19,6 @@ import java.beans.Transient;
 
 @Service
 public class UserServiceImpl implements UserService {
-    public static String test="confictTest";
 
     @Autowired
     private UserDOMapper userDOMapper;

@@ -9,19 +9,20 @@ import com.miaosha.service.UserService;
 import com.miaosha.service.model.UserModel;
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller("user")
 @RequestMapping("/user")
 @CrossOrigin
 public class UserController extends BaseController{
-    public static String test="confictTest";
-
-
+    
     @Autowired UserService userService;
 
     @Autowired
