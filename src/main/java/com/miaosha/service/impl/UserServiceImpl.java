@@ -12,10 +12,9 @@ import com.miaosha.service.UserService;
 import com.miaosha.service.model.UserModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.beans.Transient;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -58,13 +57,31 @@ public class UserServiceImpl implements UserService {
             throw new BussinessException(EmBussinessError.PARAMETER_VALIDATION_ERROR);
         }
         UserDO userDO = convertFromModel(userModel);
-        userDOMapper.insertSelective(userDO);
+        try {
+            userDOMapper.insertSelective(userDO);
+        } catch (DuplicateKeyException e) {
+            throw new BussinessException(EmBussinessError.PARAMETER_VALIDATION_ERROR,"手机号已重复注册");
+        }
 
         //密码设置
+        userModel.setId(userDO.getId());
         UserPasswordDO userPasswordDO = convertPasswordFromModel(userModel);
         userPasswordDOMapper.insertSelective(userPasswordDO);
 
         return;
+    }
+
+    @Override
+    public void validateLogin(String telphone, String encrptPassword) {
+        UserDO userDO = userDOMapper.selectByTelphone(telphone);
+        if(userDO == null){
+            new BussinessException(EmBussinessError.USER_LOGIN_FAIL);
+        }
+        UserPasswordDO userPasswordDO = userPasswordDOMapper.selectByUserId(userDO.getId());
+        UserModel userModel = convertFromDataObject(userDO,userPasswordDO);
+        if(!StringUtils.equals(encrptPassword,userModel.getEncrptPassword())){
+            new BussinessException(EmBussinessError.USER_LOGIN_FAIL);
+        }
     }
 
     private UserPasswordDO convertPasswordFromModel(UserModel userModel){
